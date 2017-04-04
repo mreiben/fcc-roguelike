@@ -1,0 +1,29 @@
+#cell {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+}
+
+.empty {
+  background-color: white;
+}
+
+.stone {
+  background-color: grey;
+}
+
+.player {
+  background-color: blue;
+}
+
+.enemy {
+  background-color: red;
+}
+
+.potion {
+  background-color: green;
+}
+
+.weapon {
+  background-color: yellow;
+}
