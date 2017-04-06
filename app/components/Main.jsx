@@ -6,58 +6,55 @@ import Grid from 'Grid';
 class Main extends Component {
   constructor(props){
     super(props);
+    let newGrid = [];
+    for(let i = 0; i < 50; i++){
+      let newRow = [];
+      for(let x = 0; x < 75; x++){
+        newRow.push(1);
+      }
+      newGrid.push(newRow);
+    }
     this.state = {
       health: 100,
       weapon: 'stick',
       level: 1,
       xp: 0,
       playerPosition: [5,5],
-      grid: [
-        [0,0,0,0,0,0,0,0,0,0],
-        [0,1,1,0,0,1,0,2,0,0],
-        [0,3,0,1,1,0,0,2,0,0],
-        [0,1,1,0,0,1,0,2,0,0],
-        [0,1,1,0,0,1,0,2,0,0],
-        [1,1,1,0,0,5,3,3,0,0],
-        [0,1,1,0,0,1,0,2,0,0],
-        [0,1,1,0,0,1,0,2,4,0],
-        [0,1,1,0,0,1,0,2,0,0],
-        [0,1,1,0,0,1,0,2,0,0]
-      ]
+      grid: newGrid
     }
-    this.renderCells = this.renderCells.bind(this);
+
   }
 
-  renderCells = () =>{
+  renderCells = () => {
     let myRows = [];
-    for(let r = 0; r < 10; r++){
+    for(let r = 0; r < this.state.grid.length; r++){
       let newRow = [];
-      for(let c = 0; c < 10; c++){
+      for(let c = 0; c < this.state.grid[0].length; c++){
         let v = '';
         switch(this.state.grid[r][c]){
           case 1:
-            v = "stone";
-            break;
+          v = "stone";
+          break;
           case 2:
-            v = "enemy";
-            break;
+          v = "enemy";
+          break;
           case 3:
-            v = "potion";
-            break;
+          v = "potion";
+          break;
           case 4:
-            v = "weapon";
-            break;
+          v = "weapon";
+          break;
           case 5:
-            v = "player";
-            break;
+          v = "player";
+          break;
           default:
-            v = "empty";
+          v = "empty";
         }
         newRow.push(<Cell value={v}/>)
       }
-      myRows.push(newRow);
+      myRows.push(<div className="cellRow">{newRow}</div>);
     }
-    return(<div>{myRows}</div>);
+    return(<div className="fullGrid">{myRows}</div>);
   }
 
   render() {
@@ -70,9 +67,8 @@ class Main extends Component {
           weapon={this.state.weapon}
           />
         <div className="grid">
-          {this.renderCells}
+          {this.renderCells()}
         </div>
-        <Cell value="player"/>
       </div>
     )
   }
